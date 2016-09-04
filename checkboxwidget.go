@@ -10,19 +10,19 @@ type checkboxMultipleWidget struct {
 	Widget
 }
 
-type checkboxOptionValue struct {
+type CheckboxOptionValue struct {
 	Label    string
 	Value    string
 	Checked  bool
 	Disabled bool
 }
 
-type checkboxOptionValues []*checkboxOptionValue
+type CheckboxOptionValues []*CheckboxOptionValue
 
 type CheckboxContext struct {
 	Field   FieldInterface
 	Attrs   map[string]string
-	Options checkboxOptionValues
+	Options CheckboxOptionValues
 }
 
 type CheckboxOptionsMaker func() CheckboxOptions
@@ -74,7 +74,7 @@ func (wg *checkboxMultipleWidget) html(f FieldInterface) string {
 	for i := 0; i < opts.Len(); i++ {
 		ctx.Options = append(
 			ctx.Options,
-			&checkboxOptionValue{
+			&CheckboxOptionValue{
 				Label:    opts.Label(i),
 				Value:    opts.Value(i),
 				Checked:  opts.Checked(i),

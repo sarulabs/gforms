@@ -10,19 +10,19 @@ type radioSelectWidget struct {
 	Widget
 }
 
-type radioOptionValue struct {
+type RadioOptionValue struct {
 	Label    string
 	Value    string
 	Checked  bool
 	Disabled bool
 }
 
-type radioOptionValues []*radioOptionValue
+type RadioOptionValues []*RadioOptionValue
 
 type radioContext struct {
 	Field   FieldInterface
 	Attrs   map[string]string
-	Options radioOptionValues
+	Options RadioOptionValues
 }
 
 type RadioOptionsMaker func() RadioOptions
@@ -74,7 +74,7 @@ func (wg *radioSelectWidget) html(f FieldInterface) string {
 	for i := 0; i < opts.Len(); i++ {
 		ctx.Options = append(
 			ctx.Options,
-			&radioOptionValue{
+			&RadioOptionValue{
 				Label:    opts.Label(i),
 				Value:    opts.Value(i),
 				Checked:  opts.Checked(i),

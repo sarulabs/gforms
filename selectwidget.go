@@ -12,20 +12,20 @@ type selectWidget struct {
 	Widget
 }
 
-type selectOptionValue struct {
+type SelectOptionValue struct {
 	Label    string
 	Value    string
 	Selected bool
 	Disabled bool
 }
 
-type selectOptionsValues []*selectOptionValue
+type SelectOptionValues []*SelectOptionValue
 
 type selectContext struct {
 	Multiple bool
 	Field    FieldInterface
 	Attrs    map[string]string
-	Options  selectOptionsValues
+	Options  SelectOptionValues
 }
 
 type SelectOptionsMaker func() SelectOptions
@@ -77,7 +77,7 @@ func (wg *selectWidget) html(f FieldInterface) string {
 	context.Multiple = wg.Multiple
 	opts := wg.Maker()
 	for i := 0; i < opts.Len(); i++ {
-		context.Options = append(context.Options, &selectOptionValue{Label: opts.Label(i), Value: opts.Value(i), Selected: opts.Selected(i), Disabled: opts.Disabled(i)})
+		context.Options = append(context.Options, &SelectOptionValue{Label: opts.Label(i), Value: opts.Value(i), Selected: opts.Selected(i), Disabled: opts.Disabled(i)})
 	}
 	context.Attrs = wg.Attrs
 	err := Template.ExecuteTemplate(&buffer, "SelectWidget", context)
